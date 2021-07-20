@@ -1,4 +1,7 @@
+import { AdminAuthGuard } from './services/admin-auth-guard.service';
+import { UserService } from './user.service';
 import { AuthService } from './auth.service';
+import { AngularFireAuthGuard, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 
 import { RouterModule } from '@angular/router';
 import { environment } from './../environments/environment';
@@ -21,6 +24,10 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
+
 
 @NgModule({
   declarations: [
@@ -46,19 +53,22 @@ import { LoginComponent } from './login/login.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
-      { path: 'check-out', component: CheckOutComponent },
-      { path: 'order-success', component: OrderSuccessComponent },
       { path: 'my/orders', component: MyOrdersComponent },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems } },
       { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'admin/orders', component: AdminOrdersComponent },
-      { path: 'admin/products', component: AdminProductsComponent },
+
+      { path: 'check-out', component: CheckOutComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin} },
+      { path: 'order-success', component: OrderSuccessComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin} },
+      
+      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AngularFireAuthGuard, AdminAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin} },
+      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AngularFireAuthGuard, AdminAuthGuard ], data: { authGuardPipe: redirectUnauthorizedToLogin} },
     ])
     
   ],
   providers: [
-    AuthService
-  ],
+    AuthService,
+    UserService,
+    AdminAuthGuard    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
