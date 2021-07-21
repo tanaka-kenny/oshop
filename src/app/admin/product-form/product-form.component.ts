@@ -1,6 +1,7 @@
 import { ProductService } from './../../services/product.service';
 import { CategoryService } from './../../services/category.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -11,6 +12,7 @@ export class ProductFormComponent implements OnInit {
 
   categories$:any;
   constructor(
+    private router: Router,
     private catergoryService: CategoryService,
     private productService: ProductService) { 
     this.categories$ = catergoryService.getCateogories().snapshotChanges();
@@ -21,6 +23,7 @@ export class ProductFormComponent implements OnInit {
 
   save(product:any) {
     this.productService.create(product);
+    this.router.navigate(['/admin/products'])
   }
 
 }
