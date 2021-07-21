@@ -19,7 +19,7 @@ export class AdminAuthGuard implements CanActivate {
     this.userService.get(fbAuthUser?.uid).valueChanges()
     .subscribe(dbUser => { //get user from DB
       isAdmin = dbUser?.isAdmin;
-        console.log(dbUser);
+      //  console.log(dbUser);
       }); 
     }); 
   //  console.log(isAdmin);
