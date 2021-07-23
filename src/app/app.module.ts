@@ -68,6 +68,7 @@ const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
       
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AngularFireAuthGuard, AdminAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin} },
       { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AngularFireAuthGuard, AdminAuthGuard ], data: { authGuardPipe: redirectUnauthorizedToLogin} },
+      { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AngularFireAuthGuard, AdminAuthGuard ], data: { authGuardPipe: redirectUnauthorizedToLogin} },
       { path: 'admin/products', component: AdminProductsComponent, canActivate: [AngularFireAuthGuard, AdminAuthGuard ], data: { authGuardPipe: redirectUnauthorizedToLogin} }
     ])
     

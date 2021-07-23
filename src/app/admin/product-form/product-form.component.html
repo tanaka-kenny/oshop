@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row" *ngIf="reqProd">
     <div class="col-md-6">
         <form #f="ngForm" (ngSubmit)="save(f.value)">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input #title="ngModel" ngModel name="title" type="text" id="title" class="form-control" required>
+                <input #title="ngModel" [(ngModel)]="reqProd.title" name="title" type="text" id="title" class="form-control" required>
                 <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
                     Title is required.
                 </div>
@@ -12,7 +12,7 @@
                 <label for="price">Price</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
-                    <input #price="ngModel" ngModel name="price" type="number" id="price" class="form-control" required [min]="0">
+                    <input #price="ngModel" [(ngModel)]="reqProd.price" name="price" type="number" id="price" class="form-control" required [min]="0">
                 </div>
                 <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
                     <div *ngIf="price.errors?.required">Price is required.</div>
@@ -21,10 +21,10 @@
             </div>
             <div class="form-group">
                 <label for="category">Category</label>
-                <select #category="ngModel" ngModel name="category" id="category" class="form-control" required>
+                <select #category="ngModel" [(ngModel)]="reqProd.category" name="category" id="category" class="form-control" required>
                     <option value=""></option>
                     <option [value]="c.key" *ngFor="let c of (categories$ | async)">
-                        {{ c.payload.val() | json}}
+                        {{ c.obj.name }}
                     </option>
                 </select>
                 <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
@@ -33,21 +33,22 @@
             </div>
             <div class="form-group">
                 <label for="imageUrl">Image URL</label>
-                <input type="text" #imageUrl="ngModel" ngModel name="imageUrl" id="imageUrl" class="form-control" required url>
+                <input type="text" #imageUrl="ngModel" [(ngModel)]="reqProd.imageUrl" name="imageUrl" id="imageUrl" class="form-control" required url>
                 <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
                     <div *ngIf="imageUrl.errors?.required">Image URL is required</div>
                 </div>
             </div>
-            <button class="btn btn-primary my-2">Save</button>
+            <button class="btn btn-primary m-2">Save</button>
+            <button type="button" (click)="deleteProduct()" class="btn btn-danger m-2">Delete</button>
         </form>
     </div>
     <div class="col-md-6" >
-        <div class="card my-3" style="width: 18rem;" *ngIf="f.value">
-            <img [src]="imageUrl.value" class="card-img-top img-fluid">
+        <div class="card my-3" style="width: 20rem;" *ngIf="f.value">
+            <img [src]="reqProd.imageUrl" class="card-img-top img-fluid">
             <div class="card-body">
-              <h5 class="card-title">{{ title.value }}</h5>
+              <h5 class="card-title">{{ reqProd.title }}</h5>
               <p class="card-text">
-                {{ price.value | currency:'USD':true }}
+                {{ reqProd.price | currency:'USD':"symbol" }}
               </p>
             </div>
           </div>
