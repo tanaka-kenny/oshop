@@ -10,7 +10,7 @@
   type="text" class="form-control" placeholder="Search ...">
 </p>
 
-<table class="table">
+<!-- <table class="table">
   <thead>
     <tr>
       <th scope="col">Title</th>
@@ -26,4 +26,34 @@
         <a [routerLink]="['/admin/products/', product.key]">Edit</a>
       </td>
     </tr>
-</table>
+</table> -->
+
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+  
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let product"> {{ product.payload.val().title }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let product"> {{ product.payload.val().price | currency:'USD':"symbol" }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let product"> 
+        <a [routerLink]="['/admin/products/', product.key]">Edit</a>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+    
+    
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
