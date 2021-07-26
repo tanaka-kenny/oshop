@@ -1,14 +1,26 @@
-<div class="row my-3">
-    <div class="col-lg-4 col-md-6" *ngFor="let product of products$ | async">
-        <div class="card m-3" style="width: 18rem;">
-            <img [src]="product.obj.imageUrl" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"> {{ product.obj.title }} </h5>
-              <p class="card-text"> {{ product.obj.price | currency:'USD':"symbol" }} </p>
-              <a [routerLink]="" class="btn btn-primary">
-                  Add to cart
-              </a>
+<div class="row">
+    <div class="col-lg-3 my-3">
+        <ul class="list-group">
+            <li *ngFor="let c of categories$ | async" class="list-group-item">
+                {{ c.obj.name }}
+            </li>
+        </ul>
+    </div>
+    <div class="col my-3">
+        <div class="row">
+            <div class="col-lg-4 col-md-6" *ngFor="let product of products$ | async">
+                <div class="card m-3" style="width: 15rem;">
+                    <img [src]="product.obj.imageUrl" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title"> {{ product.obj.title }} </h3>
+                      <p class="card-text"> {{ product.obj.price | currency:'USD':"symbol" }} </p>
+                      <a [routerLink]="" class="btn btn-primary">
+                          Add to cart
+                      </a>
+                    </div>
+                  </div>
             </div>
-          </div>
+        </div>
     </div>
 </div>
+

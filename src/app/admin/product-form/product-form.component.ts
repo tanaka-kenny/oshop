@@ -27,7 +27,7 @@ export class ProductFormComponent implements OnInit {
     private catergoryService: CategoryService,
     private productService: ProductService) {
 
-    this.categories$ = catergoryService.getCateogories();
+    this.categories$ = catergoryService.getAllCateogories();
 
     // get product to be edited
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
