@@ -1,1 +1,14 @@
-<p>products works!</p>
+<div class="row my-3">
+    <div class="col-lg-4 col-md-6" *ngFor="let product of products$ | async">
+        <div class="card m-3" style="width: 18rem;">
+            <img [src]="product.obj.imageUrl" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"> {{ product.obj.title }} </h5>
+              <p class="card-text"> {{ product.obj.price | currency:'USD':"symbol" }} </p>
+              <a [routerLink]="" class="btn btn-primary">
+                  Add to cart
+              </a>
+            </div>
+          </div>
+    </div>
+</div>

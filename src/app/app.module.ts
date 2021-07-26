@@ -63,7 +63,7 @@ const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
     AngularFireAuthModule,
     NgbModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'my/orders', component: MyOrdersComponent },
       { path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems } },

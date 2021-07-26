@@ -1,3 +1,5 @@
+import { map } from 'rxjs/operators';
+import { ProductService } from './../services/product.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
+  products$: any;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private productSerive: ProductService) { 
+    this.products$ = this.productSerive.getAllProducts().snapshotChanges().pipe(
+      map(changes => 
+        changes.map(c => ({key: c.key, obj: c.payload.val() })))
+    );
   }
+
+
 
 }
