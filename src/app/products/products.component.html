@@ -2,9 +2,9 @@
     <div class="col-lg-3 my-3">
         <product-filter [category]="category"></product-filter>
     </div>
-    <div class="col my-3">
+    <div class="col">
         <div class="row">
-            <div class="col-lg-4 col-md-6 m-3" *ngFor="let p of filteredProducts" style="width: 15rem;">
+            <div class="col-lg-4 col-md-6 mx-3 mb-3" *ngFor="let p of filteredProducts" style="width: 15rem;">
                 <product-card [product]="p"></product-card>
             </div>
         </div>
