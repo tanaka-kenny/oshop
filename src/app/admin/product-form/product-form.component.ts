@@ -14,12 +14,7 @@ import { Observable } from 'rxjs';
 export class ProductFormComponent implements OnInit {
   categories$:Observable<any[]>;
   id;
-  reqProd: Product|null = {
-    category: "",
-    imageUrl: "",
-    price: 0,
-    title: ""
-  };
+  requestedProd: any;
   
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,11 +27,10 @@ export class ProductFormComponent implements OnInit {
     // get product to be edited
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     if (this.id) {
-      this.productService.getRequestedProduct(this.id).valueChanges().subscribe(c => {
-        this.reqProd = c;
+      this.productService.getRequestedProduct(this.id).snapshotChanges().subscribe(product => {
+        this.requestedProd = product;
       });
     }
-    // console.log(reqProd);
   }
 
   ngOnInit(): void {

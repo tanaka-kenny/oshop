@@ -10,26 +10,6 @@
   type="text" class="form-control" placeholder="Search ...">
 </p>
 
-<!-- <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Price</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of filteredProducts">
-      <td> {{ product.payload.val().title }}</td>
-      <td>{{ product.payload.val().price | currency:'USD':"symbol" }}</td>
-      <td>
-        <a [routerLink]="['/admin/products/', product.key]">Edit</a>
-      </td>
-    </tr>
-</table> -->
-
-
-
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
   

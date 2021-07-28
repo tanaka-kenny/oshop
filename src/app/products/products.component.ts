@@ -15,8 +15,7 @@ export class ProductsComponent {
 
   constructor(
     private activeRoute: ActivatedRoute,
-    private productSerive: ProductService,
-    private categoryService: CategoryService) { 
+    private productSerive: ProductService) { 
 
     this.productSerive.getAllProducts().snapshotChanges().subscribe(products => {
       this.products = products;

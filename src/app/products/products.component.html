@@ -4,17 +4,8 @@
     </div>
     <div class="col my-3">
         <div class="row">
-            <div class="col-lg-4 col-md-6" *ngFor="let product of filteredProducts">
-                <div class="card m-3" style="width: 15rem;">
-                    <img [src]="product.payload.val().imageUrl" class="card-img-top">
-                    <div class="card-body">
-                      <h3 class="card-title"> {{ product.payload.val().title }} </h3>
-                      <p class="card-text"> {{ product.payload.val().price | currency:'USD':"symbol" }} </p>
-                      <a [routerLink]="" class="btn btn-primary">
-                          Add to Cart
-                      </a>
-                    </div>
-                  </div>
+            <div class="col-lg-4 col-md-6 m-3" *ngFor="let p of filteredProducts" style="width: 15rem;">
+                <product-card [product]="p"></product-card>
             </div>
         </div>
     </div>
