@@ -3,8 +3,11 @@
     <div class="card-body">
       <h3 class="card-title" > {{ product.payload.val().title }} </h3>
       <p class="card-text"> {{ product.payload.val().price | currency:'USD':"symbol" }} </p>
-      <a [routerLink]="" class="btn btn-primary" *ngIf="showActions">
-          Ad to Cart
-      </a>
+      
+    </div>
+    <div class="card-footer p-0 d-grid gap-2">
+        <a [routerLink]="" class="btn btn-primary" *ngIf="showActions">
+          Add to Cart
+        </a>
     </div>
   </div>
