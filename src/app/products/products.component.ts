@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 export class ProductsComponent {
   products: any[] = [];
   filteredProducts: any;
-  categories$: any;
   category: any;
 
   constructor(
@@ -29,10 +28,6 @@ export class ProductsComponent {
           this.products.filter(p => p.payload.val().category === this.category) : this.products;
       });
     });
-
-    this.categories$ = this.categoryService.getAllCateogories();
-
-    
   }
 
 
