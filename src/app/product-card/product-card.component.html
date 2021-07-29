@@ -5,12 +5,28 @@
       <p class="card-text"> {{ product.payload.val().price | currency:'USD':"symbol" }} </p>
       
     </div>
-    <div class="card-footer p-0 d-grid gap-2">
-        <button 
-        (click)="addToCart(product)"
-        class="btn btn-primary" 
-        *ngIf="showActions">
-          Add to Cart
-        </button>
+    <div class="card-footer p-0 d-grid gap-2" *ngIf="showActions">
+        <button
+        *ngIf="getQuantity() === 0; else updateQuantity"
+        (click)="addToCart()"
+        class="btn btn-secondary" >Add to Cart</button>
     </div>
+    <ng-template #updateQuantity>
+      <div class="row mx-0">
+        <div class="col-2 p-0 d-grid gap-2">
+          <button
+          (click)="removeFromCart()" 
+          class="btn btn-secondary ">-</button>
+        </div>
+        <div class="col text-center pt-2">
+          {{ getQuantity() }} in Cart
+        </div>
+        <div class="col-2 p-0 d-grid gap-2">
+          <button
+            (click)="addToCart()" 
+            class="btn btn-secondary text-center">+</button>
+        </div>
+      </div>
+      
+    </ng-template>
   </div>
