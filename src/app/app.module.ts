@@ -1,3 +1,4 @@
+import { ShoppingCart } from './services/shopping-cart.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
@@ -88,7 +89,8 @@ const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
     UserService,
     AdminAuthGuard,
     CategoryService,
-    ProductService    ],
+    ProductService,
+    ShoppingCart],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

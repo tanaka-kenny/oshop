@@ -1,3 +1,4 @@
+import { ShoppingCart } from './../services/shopping-cart.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -10,6 +11,12 @@ export class ProductCardComponent  {
   @Input('product') product: any;
   @Input('show-actions') showActions = true;
 
-  constructor() { }
+  constructor(
+    private cartService: ShoppingCart
+  ) { }
+
+  addToCart(product: any) {
+
+  }
 
 }
