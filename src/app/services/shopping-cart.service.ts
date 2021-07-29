@@ -1,6 +1,6 @@
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
-import { take, map } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { CartItem } from '../models/cart-item.model';
 
 @Injectable({
